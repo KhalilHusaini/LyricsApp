@@ -8,7 +8,7 @@ export default function ChosenSongPage() {
   useEffect(() => {
     const fetchLyrics = async () => {
       try {
-        // Make API request to fetch the lyrics based on the song ID
+        
         const response = await fetch(`YOUR_API_ENDPOINT/song/${id}/lyrics`);
         const data = await response.json();
 
@@ -26,10 +26,12 @@ export default function ChosenSongPage() {
   }, [id]);
 
   return (
+    
     <div>
       <h1>Chosen Song Page</h1>
       <h2>Lyrics</h2>
       {lyrics ? <pre>{lyrics}</pre> : <p>No lyrics available for this song.</p>}
     </div>
+    
   );
 }
