@@ -1,0 +1,32 @@
+.chosen-song-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .lyrics-container {
+    max-width: 600px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .back-button {
+    margin-bottom: 10px;
+  }
+  
+  .back-button button {
+    padding: 8px 16px;
+    background-color: #f2f2f2;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .back-button button:hover {
+    background-color: #e6e6e6;
+  }
+  

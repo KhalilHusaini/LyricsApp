@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { apiKey } from '../components/apiKeys';
+import './SearchResultPage.css';
 
-export default function SearchResultPage() {
+const SearchResultPage = () => {
   const { query } = useParams();
   const [searchResults, setSearchResults] = useState([]);
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ export default function SearchResultPage() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://api.musixmatch.com/ws/1.1/track.search?q_track=${query}&page_size=10&page=1&s_track_rating=desc&apikey=${apiKey}`
+          `http://api.musixmatch.com/ws/1.1/track.search?q_track=${query}&page_size=20&page=1&s_track_rating=desc&apikey=${apiKey}`
         );
         const data = await response.json();
 
@@ -29,27 +30,39 @@ export default function SearchResultPage() {
   }, [query]);
 
   const handleViewLyrics = (trackId) => {
-    navigate(`/song/${trackId}`);
+    navigate(`/song/${trackId}?query=${query}`);
+  };
+  
+
+  const handleGoBack = () => {
+    navigate('/');
   };
 
   return (
-    <div>
-      <h1>Search Results</h1>
-      {searchResults && searchResults.length > 0 ? (
-        <ul>
-          {searchResults.map((result) => (
-            <li key={result.track_id}>
-              {result.track_name}{' '}
-              <button onClick={() => handleViewLyrics(result.track_id)}>
+    <div className="search-results-container">
+      <h1 className="search-results-title">Search Results Page</h1>
+      <button className="back-button" onClick={handleGoBack}>
+        Back to Homepage
+      </button>
+      <div className="card-container">
+        {searchResults && searchResults.length > 0 ? (
+          searchResults.map((result) => (
+            <div className="card" key={result.track_id}>
+              <h2 className="track-name">{result.track_name}</h2>
+              <button
+                className="view-lyrics-button"
+                onClick={() => handleViewLyrics(result.track_id)}
+              >
                 View Lyrics
               </button>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No search results found.</p>
-      )}
+            </div>
+          ))
+        ) : (
+          <p>No search results found.</p>
+        )}
+      </div>
     </div>
   );
-}
+};
 
+export default SearchResultPage;
