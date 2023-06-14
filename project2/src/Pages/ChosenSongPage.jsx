@@ -30,8 +30,11 @@ export default function ChosenSongPage() {
   }, [id]);
 
   const handleBackToSearchResults = () => {
-    navigate('/search');
+    const searchQuery = new URLSearchParams(location.search).get('query');
+    navigate(searchQuery || '/'); 
   };
+  
+  
 
   const handleBackToHomepage = () => {
     navigate('/');

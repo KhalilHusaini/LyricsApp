@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
+
 import { apiKey } from '../components/apiKeys';
 import './SearchResultPage.css';
 
@@ -7,6 +8,7 @@ const SearchResultPage = () => {
   const { query } = useParams();
   const [searchResults, setSearchResults] = useState([]);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,8 +32,9 @@ const SearchResultPage = () => {
   }, [query]);
 
   const handleViewLyrics = (trackId) => {
-    navigate(`/song/${trackId}?query=${query}`);
+    navigate(`/song/${trackId}?query=${location.pathname}`);
   };
+  
   
 
   const handleGoBack = () => {
