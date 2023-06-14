@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { apiKey } from '../components/apiKeys';
 import './ChosenSongPage.css';
 
-export default function ChosenSongPage() {
+const ChosenSongPage = () => {
   const { id } = useParams();
   const [lyrics, setLyrics] = useState('');
-  const [songDetails, setSongDetails] = useState(null);
+  const [trackDetails, setTrackDetails] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    const fetchSongDetailsAndLyrics = async () => {
+    const fetchLyrics = async () => {
       try {
         const lyricsResponse = await fetch(
           `http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${id}&apikey=${apiKey}`
@@ -22,23 +23,30 @@ export default function ChosenSongPage() {
         } else {
           console.log('Error:', lyricsData.message.body);
         }
+      } catch (error) {
+        console.log('Error:', error);
+      }
+    };
 
-        const detailsResponse = await fetch(
+    const fetchTrackDetails = async () => {
+      try {
+        const trackResponse = await fetch(
           `http://api.musixmatch.com/ws/1.1/track.get?track_id=${id}&apikey=${apiKey}`
         );
-        const detailsData = await detailsResponse.json();
+        const trackData = await trackResponse.json();
 
-        if (detailsResponse.ok) {
-          setSongDetails(detailsData.message.body.track);
+        if (trackResponse.ok) {
+          setTrackDetails(trackData.message.body.track);
         } else {
-          console.log('Error:', detailsData.message.body);
+          console.log('Error:', trackData.message.body);
         }
       } catch (error) {
         console.log('Error:', error);
       }
     };
 
-    fetchSongDetailsAndLyrics();
+    fetchLyrics();
+    fetchTrackDetails();
   }, [id]);
 
   const handleBackToSearchResults = () => {
@@ -52,32 +60,31 @@ export default function ChosenSongPage() {
 
   return (
     <div className="chosen-song-container">
-      <div className="lyrics-container">
-        <button className="back-button" onClick={handleBackToSearchResults}>
-          Back to Search Results
-        </button>
-        <button className="back-button" onClick={handleBackToHomepage}>
-          Back to Homepage
-        </button>
-        <h1>Chosen Song Page</h1>
-        {lyrics ? (
+      <h1>Chosen Song Page</h1>
+      <div className="lyrics-box">
+        <h2>Lyrics</h2>
+        <div>{lyrics}</div>
+      </div>
+      <div className="track-details-box">
+        <h2>Track Details</h2>
+        {trackDetails ? (
           <div>
-            <div>{lyrics}</div>
-            {songDetails && (
-              <div className="song-details">
-                <h2>{songDetails.track_name}</h2>
-                <h3>{songDetails.artist_name}</h3>
-                <p>{songDetails.album_name}</p>
-                <p>{songDetails.track_rating}</p>
-                <p>{songDetails.track_length}</p>
-              </div>
-            )}
+            <p>Track Name: {trackDetails.track_name}</p>
+            <p>Artist Name: {trackDetails.artist_name}</p>
+            <p>Album Name: {trackDetails.album_name}</p>
+            <p>Track Rating: {trackDetails.track_rating}</p>
+            <p>Track Length: {trackDetails.track_length}</p>
           </div>
         ) : (
-          <p>Loading lyrics...</p>
+          <p>Loading track details...</p>
         )}
+      </div>
+      <div className="button-container">
+        <button onClick={handleBackToSearchResults}>Back to Search Results</button>
+        <button onClick={handleBackToHomepage}>Back to Homepage</button>
       </div>
     </div>
   );
-}
+};
 
+export default ChosenSongPage;
