@@ -1,5 +1,5 @@
 Project Title: LyricSearch Web Application
-![Alt-text](page1.png)
+![Alt-text](./project2/page1.png)
 Description: The Lyric Search app is a web application designed to provide users with a convenient way to search for song lyrics. Users can enter the title of a song and instantly retrieve the corresponding lyrics, allowing them to sing along or explore the meaning behind their favorite tracks.
 
 Technology Used:
