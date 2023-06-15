@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HomePage.css';
 
-const HomePage = ({ handleSearch }) => {
+export default function({ handleSearch }) {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 
@@ -30,4 +30,4 @@ const HomePage = ({ handleSearch }) => {
   );
 };
 
-export default HomePage;
+

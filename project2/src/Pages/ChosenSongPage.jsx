@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { apiKey } from '../components/apiKeys';
 import './ChosenSongPage.css';
 
-const ChosenSongPage = ({ handleBackToSearchResults, handleBackToHomepage }) => {
+export default function ChosenSongPage({ handleBackToSearchResults, handleBackToHomepage }) {
   const { id } = useParams();
   const [lyrics, setLyrics] = useState('');
   const [trackDetails, setTrackDetails] = useState(null);
@@ -77,5 +77,5 @@ const ChosenSongPage = ({ handleBackToSearchResults, handleBackToHomepage }) => 
   );
 };
 
-export default ChosenSongPage;
+
 

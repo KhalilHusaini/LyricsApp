@@ -43,7 +43,7 @@ function App() {
           path="/search/:query"
           element={
             <SearchResultPage
-               handleBackToHomepage={handleBackToHomepage}// Update the prop name here
+               handleBackToHomepage={handleBackToHomepage}
               handleViewLyrics={handleViewLyrics}
             />
           }
