@@ -7,6 +7,7 @@ import './SearchResultPage.css';
 const SearchResultPage = () => {
   const { query } = useParams();
   const [searchResults, setSearchResults] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); // Track loading state
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -14,7 +15,7 @@ const SearchResultPage = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://api.musixmatch.com/ws/1.1/track.search?q_track=${query}&page_size=100&page=1&s_track_rating=desc&apikey=${apiKey}`
+          `http://api.musixmatch.com/ws/1.1/track.search?q_track=${query}&page_size=20&page=1&s_track_rating=desc&apikey=${apiKey}`
         );
         const data = await response.json();
 
@@ -25,6 +26,8 @@ const SearchResultPage = () => {
         }
       } catch (error) {
         console.log('Error:', error);
+      } finally {
+        setIsLoading(false); // Set loading state to false after fetching data
       }
     };
 
@@ -34,8 +37,6 @@ const SearchResultPage = () => {
   const handleViewLyrics = (trackId) => {
     navigate(`/song/${trackId}?query=${location.pathname}`);
   };
-  
-  
 
   const handleGoBack = () => {
     navigate('/');
@@ -43,17 +44,18 @@ const SearchResultPage = () => {
 
   return (
     <div className="search-results-container">
-      <h1 className="search-results-title">Search Results Page</h1>
+      <h1 className="search-results-title">Search Results</h1>
       <button className="back-button" onClick={handleGoBack}>
         Back to Homepage
       </button>
       <div className="card-container">
-        {searchResults && searchResults.length > 0 ? (
+        {isLoading ? (
+          <p>Loading search results...</p>
+        ) : searchResults && searchResults.length > 0 ? (
           searchResults.map((result) => (
             <div className="card" key={result.track_id}>
               <h2 className="track-name">{result.track_name}</h2>
               <p className="artist-name">{result.artist_name}</p>
-              <p className="album-name">{result.album_name}</p>
               <button
                 className="view-lyrics-button"
                 onClick={() => handleViewLyrics(result.track_id)}

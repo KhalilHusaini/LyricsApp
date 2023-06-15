@@ -13,7 +13,8 @@ const HomePage = () => {
   
   return (
     <div className="homepage-container">
-      <h1 className="homepage-title">Homepage</h1>
+      <h1 className="homepage-title">Welcome to LyricSearch!</h1>
+      <h2 className="homepage-sub">Find lyrics for any song</h2>
       <form className="homepage-form" onSubmit={handleSubmit}>
         <input
           type="text"
@@ -22,7 +23,7 @@ const HomePage = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="homepage-input"
         />
-        <button type="submit" className="homepage-button">Search</button>
+        <button type="submit" className="homepage-button"  disabled={!searchTerm}>Search</button>
       </form>
     </div>
   );
