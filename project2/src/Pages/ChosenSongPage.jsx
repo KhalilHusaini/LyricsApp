@@ -60,7 +60,7 @@ const ChosenSongPage = () => {
 
   return (
     <div className="chosen-song-container">
-      <h1>View Lyrics</h1>
+      <h1 className="view-title">View Lyrics</h1>
       <div className="lyrics-box">
         <h2>Lyrics</h2>
         <div>{lyrics}</div>

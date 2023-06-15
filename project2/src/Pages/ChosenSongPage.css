@@ -6,9 +6,12 @@
   justify-content: center;
   height: 100vh;
   padding: 20px;
-  background-color: #A7C7E7;
+  background-image: url(./assets/concert.png);
 }
 
+.view-title {
+  color: white;
+}
 .chosen-song-container h1 {
   margin-top: 0;
   margin-bottom: 20px;

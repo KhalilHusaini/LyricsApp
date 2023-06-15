@@ -7,7 +7,7 @@ import './SearchResultPage.css';
 const SearchResultPage = () => {
   const { query } = useParams();
   const [searchResults, setSearchResults] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); // Track loading state
+  const [isLoading, setIsLoading] = useState(true); 
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -27,7 +27,7 @@ const SearchResultPage = () => {
       } catch (error) {
         console.log('Error:', error);
       } finally {
-        setIsLoading(false); // Set loading state to false after fetching data
+        setIsLoading(false); 
       }
     };
 
@@ -50,7 +50,7 @@ const SearchResultPage = () => {
       </button>
       <div className="card-container">
         {isLoading ? (
-          <p>Loading search results...</p>
+          <p className="loading">Loading search results...</p>
         ) : searchResults && searchResults.length > 0 ? (
           searchResults.map((result) => (
             <div className="card" key={result.track_id}>

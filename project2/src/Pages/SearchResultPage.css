@@ -5,8 +5,12 @@
   .search-results-title {
     font-size: 24px;
     margin-bottom: 20px;
+    color:#F0F8FF;
   }
-  
+  .loading {
+    color:#F0F8FF;
+    font-size: 24px;
+  }
   .card-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
