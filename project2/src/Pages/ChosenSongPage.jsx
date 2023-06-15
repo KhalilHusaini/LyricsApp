@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { apiKey } from '../components/apiKeys';
 import './ChosenSongPage.css';
 
-const ChosenSongPage = () => {
+const ChosenSongPage = ({ handleBackToSearchResults, handleBackToHomepage }) => {
   const { id } = useParams();
   const [lyrics, setLyrics] = useState('');
   const [trackDetails, setTrackDetails] = useState(null);
-  const navigate = useNavigate();
-  const location = useLocation();
+
 
   useEffect(() => {
     const fetchLyrics = async () => {
@@ -49,15 +48,6 @@ const ChosenSongPage = () => {
     fetchTrackDetails();
   }, [id]);
 
-  const handleBackToSearchResults = () => {
-    const searchQuery = new URLSearchParams(location.search).get('query');
-    navigate(searchQuery || '/');
-  };
-
-  const handleBackToHomepage = () => {
-    navigate('/');
-  };
-
   return (
     <div className="chosen-song-container">
       <h1 className="view-title">View Lyrics</h1>
@@ -88,3 +78,4 @@ const ChosenSongPage = () => {
 };
 
 export default ChosenSongPage;
+

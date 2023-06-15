@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
-
+import { useParams } from 'react-router-dom';
 import { apiKey } from '../components/apiKeys';
 import './SearchResultPage.css';
 
-const SearchResultPage = () => {
+const SearchResultPage = ({ handleBackToHomepage, handleViewLyrics }) => {
   const { query } = useParams();
   const [searchResults, setSearchResults] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); 
-  const navigate = useNavigate();
-  const location = useLocation();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,25 +24,17 @@ const SearchResultPage = () => {
       } catch (error) {
         console.log('Error:', error);
       } finally {
-        setIsLoading(false); 
+        setIsLoading(false);
       }
     };
 
     fetchData();
   }, [query]);
 
-  const handleViewLyrics = (trackId) => {
-    navigate(`/song/${trackId}?query=${location.pathname}`);
-  };
-
-  const handleGoBack = () => {
-    navigate('/');
-  };
-
   return (
     <div className="search-results-container">
       <h1 className="search-results-title">Search Results</h1>
-      <button className="back-button" onClick={handleGoBack}>
+      <button className="back-button" onClick={handleBackToHomepage}>
         Back to Homepage
       </button>
       <div className="card-container">
@@ -65,7 +54,7 @@ const SearchResultPage = () => {
             </div>
           ))
         ) : (
-          <p>No search results found.</p>
+          <p className="no-result">No search results found.</p>
         )}
       </div>
     </div>
@@ -73,3 +62,4 @@ const SearchResultPage = () => {
 };
 
 export default SearchResultPage;
+

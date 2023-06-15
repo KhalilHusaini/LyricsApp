@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './HomePage.css';
 
-const HomePage = () => {
+const HomePage = ({ handleSearch }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    handleSearch(searchTerm);
     navigate(`/search/${encodeURIComponent(searchTerm)}`);
   };
   
@@ -23,7 +24,7 @@ const HomePage = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="homepage-input"
         />
-        <button type="submit" className="homepage-button"  disabled={!searchTerm}>Search</button>
+        <button type="submit" className="homepage-button" disabled={!searchTerm}>Search</button>
       </form>
     </div>
   );

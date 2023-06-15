@@ -11,6 +11,10 @@
     color:#F0F8FF;
     font-size: 24px;
   }
+  .no-result {
+    color:#F0F8FF;
+    font-size: 24px;
+  }
   .card-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
