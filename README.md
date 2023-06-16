@@ -70,5 +70,7 @@ References:
 - https://www.youtube.com/watch?v=jiM0wqQZMWg (musixmatch API)
 - https://legacy.reactjs.org/docs/conditional-rendering.html (conditional rendering)
 - cardview/listview logic
+  ![ref1](./project2/query1.png)
   ![ref1](./project2/ref1.png)
   ![ref2](./project2/ref2.png)
+  ![ref1](./project2/query2.png)
