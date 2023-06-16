@@ -62,3 +62,5 @@ By leveraging the Musixmatch API and incorporating a user-friendly interface, th
 API used:
 -Musixmatch
 https://developer.musixmatch.com/
+
+Deployed app -https://lyrics-app-two.vercel.app/

@@ -13,7 +13,7 @@ export default function ChosenSongPage({ handleBackToSearchResults, handleBackTo
     const fetchLyrics = async () => {
       try {
         const lyricsResponse = await fetch(
-          `http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${id}&apikey=${apiKey}`
+          `https://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${id}&apikey=${apiKey}`
         );
         const lyricsData = await lyricsResponse.json();
 
@@ -30,7 +30,7 @@ export default function ChosenSongPage({ handleBackToSearchResults, handleBackTo
     const fetchTrackDetails = async () => {
       try {
         const trackResponse = await fetch(
-          `http://api.musixmatch.com/ws/1.1/track.get?track_id=${id}&apikey=${apiKey}`
+          `https://api.musixmatch.com/ws/1.1/track.get?track_id=${id}&apikey=${apiKey}`
         );
         const trackData = await trackResponse.json();
 

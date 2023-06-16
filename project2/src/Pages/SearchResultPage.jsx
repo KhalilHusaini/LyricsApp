@@ -13,7 +13,7 @@ export default function({ handleBackToHomepage, handleViewLyrics }) {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://api.musixmatch.com/ws/1.1/track.search?q_track=${query}&page_size=20&page=1&s_track_rating=desc&apikey=${apiKey}`
+          `https://api.musixmatch.com/ws/1.1/track.search?q_track=${query}&page_size=20&page=1&s_track_rating=desc&apikey=${apiKey}`
         );
         const data = await response.json();
 
