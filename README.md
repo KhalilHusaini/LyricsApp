@@ -64,3 +64,11 @@ API used:
 https://developer.musixmatch.com/
 
 Deployed app -https://lyrics-app-two.vercel.app/
+
+References:
+
+- https://www.youtube.com/watch?v=jiM0wqQZMWg (musixmatch API)
+- https://legacy.reactjs.org/docs/conditional-rendering.html (conditional rendering)
+- cardview/listview logic
+  ![ref1](./project2/ref1.png)
+  ![ref2](./project2/ref2.png)

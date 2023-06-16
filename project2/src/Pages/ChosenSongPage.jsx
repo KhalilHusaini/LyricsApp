@@ -13,7 +13,7 @@ export default function ChosenSongPage({ handleBackToSearchResults, handleBackTo
     const fetchLyrics = async () => {
       try {
         const lyricsResponse = await fetch(
-          `https://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${id}&apikey=${apiKey}`
+          `http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${id}&apikey=${apiKey}`
         );
         const lyricsData = await lyricsResponse.json();
 
@@ -58,16 +58,21 @@ export default function ChosenSongPage({ handleBackToSearchResults, handleBackTo
       <div className="track-details-box">
         <h2>Track Details</h2>
         {trackDetails ? (
-          <div>
-            <p>Track Name: {trackDetails.track_name}</p>
-            <p>Artist Name: {trackDetails.artist_name}</p>
-            <p>Album Name: {trackDetails.album_name}</p>
-            <p>Track Rating: {trackDetails.track_rating}</p>
-            <p>Track Length: {trackDetails.track_length}</p>
-          </div>
-        ) : (
-          <p>Loading track details...</p>
-        )}
+        <div>
+    <p>Track Name: {trackDetails.track_name}</p>
+    <p>Artist Name: {trackDetails.artist_name}</p>
+    <p>Album Name: {trackDetails.album_name}</p>
+    <p>Track Rating: {trackDetails.track_rating}</p>
+    {trackDetails.track_length ? (
+      <p>Track Length: {trackDetails.track_length}</p>
+    ) : (
+      <p>Track Length: No length</p>
+    )}
+  </div>
+) : (
+  <p>Loading track details...</p>
+)}
+
       </div>
       <div className="button-container">
         <button onClick={handleBackToSearchResults}>Back to Search Results</button>
